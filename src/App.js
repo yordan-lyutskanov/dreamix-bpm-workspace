@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Workspace from "./pages/Workspace";
+import Login from "./pages/Login";
+import styled, { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: 100%;
+  }
+
+  #root {
+    height: inherit;
+  }
+`;
+
+const StyledApp = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-contents: strech;
+  height: 100%;
+`;
+
+const PagesConatiner = styled.div`
+  flex: 1;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledApp className="App">
+      <GlobalStyle />
+      <Header />
+      <PagesConatiner>
+        <Router>
+          <Switch>
+            <Route path="/workspace">
+              <Workspace />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+          </Switch>
+        </Router>
+      </PagesConatiner>
+    </StyledApp>
   );
 }
 
